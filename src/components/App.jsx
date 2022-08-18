@@ -2,14 +2,12 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 import Header from './Header'
 import {Container} from 'semantic-ui-react'
-// import ListingItem from './ListingItem'
-// import ListingCard from './ListingCard'
 // import ListingItemList from './ListingItemList'
 import ListingCardList from './ListingCardList'
-// import ListingCard from './ListingCard'
 
 
-
+// Hard coded static Listing for testing purposes
+/*
 const listings = [
   {
     listingID : 1234,
@@ -25,33 +23,43 @@ const listings = [
     hasPapers: false
   },
 ]
-  
+ */ 
 // Function to collect data
 
-const getListingData = async () => {
-  const response = await fetch(
-    "https://us-east4-centered-arbor-354419.cloudfunctions.net/fetchLiveListings?brandID=1&fullRef=116610LV"
-  ).then((response) => response.json())
-  // console.log(response)
-  // return(response)
-}
-
+//Brand and Model values for app
+//need to figure out hwo to import dynamicly from page
+let inputs = {brandID : 1 , fullRef: "116610LV"}
+var {brandID, fullRef} = inputs
 
 function App() {
-  // getApiData()
-  // const [listings1, setListings] = useState([])
-  // setListings(getListingData())
-  // const listings = getListingData()
+  // set state
+  const [listings, setListings] = useState([])
+  // call api to get current live listings
+  const getListingData = async () => {
+    const response = await fetch(
+      `https://us-east4-centered-arbor-354419.cloudfunctions.net/fetchLiveListings?brandID=${brandID}&fullRef=${fullRef}`
+    ).then((response) => response.json())
+    .catch(error => console.error(error))
+      // add our data to state
+    setListings(response)
+    
+    console.log("in function log: ", response)
+    // return(response)
+  }
+  
+  useEffect(() => {
+    getListingData()
+  }, [])
+  
+  
+  // console.log("listings", listings)
+  
   return (
     <Container centered>
-
         <ListingCardList listings={listings} />
-
     </Container>
   )
 }
 
 export default App
 
-
-//      <ListingItem brand='Rolex' family='Submariner' platform='EBAY' listPrice='$24,500'/>
