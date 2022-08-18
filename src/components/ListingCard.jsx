@@ -1,9 +1,16 @@
 import React from 'react'
 import {Card, Item, Image} from 'semantic-ui-react'
 
+let dollarUS = Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumSignificantDigits: 9,
+});
+
 const ListingCard = (props) => {
   console.log(props.listing)
   const {brandName, familyName, platformName, listPrice, imageLink, link} = props.listing
+  const listPriceFormatted = dollarUS.format(listPrice)
   return(
     /*
     <Card
@@ -17,9 +24,9 @@ const ListingCard = (props) => {
       <Image size='small' centered src={imageLink} />
       <Card.Content>
         <Card.Header as='a' href={link}>{platformName}</Card.Header>
-        <Card.Meta>{listPrice}</Card.Meta>
+        <Card.Meta>{listPriceFormatted}</Card.Meta>
         <Card.Description>
-           This is a {brandName} {familyName} listed on {platformName} for {listPrice}
+           This is a {brandName} {familyName} listed on {platformName} for {listPriceFormatted}
         </Card.Description>
       </Card.Content>
     </Card>
