@@ -1,30 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
-import Header from './Header'
 import {Container} from 'semantic-ui-react'
-// import ListingItemList from './ListingItemList'
 import ListingCardList from './ListingCardList'
+import ListingTable from './ListingTable'
 
 
-// Hard coded static Listing for testing purposes
-/*
-const listings = [
-  {
-    listingID : 1234,
-    brandName : 'Rolex',
-    familyName : 'Submariner',
-    platformName : 'EBAY',
-    listPrice : '$24,500',
-    imageLink : 'https://cdn2.chrono24.com/images/uhren/16200599-4qmlxkfjx2yxlogf92r9zt1r-ExtraLarge.jpg',
-    fullRef : '116610LV',
-    baseRef : '116610',
-    link : 'https://google.com',
-    hasBox: true,
-    hasPapers: false
-  },
-]
- */ 
-// Function to collect data
+let dollarUS = Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumSignificantDigits: 9,
+});
 
 //Brand and Model values for app
 //need to figure out hwo to import dynamicly from page
@@ -42,21 +27,30 @@ function App() {
     .catch(error => console.error(error))
       // add our data to state
     setListings(response)
-    
-    console.log("in function log: ", response)
     // return(response)
   }
-  
+
   useEffect(() => {
     getListingData()
   }, [])
+
+  // sort the listings by price from lowest to highest
+  listings.sort((a, b) => a.listPrice - b.listPrice)
+
+  const prices = listings.map(({listPrice}) => listPrice)
+  const minPrice = dollarUS.format(Math.min(...prices))
+  const maxPrice = dollarUS.format(Math.max(...prices))
+  const listingCount = listings.length
+  const platforms = listings.map(({platformID}) => platformID)
+  const platformCount = new Set(platforms).size
   
-  
-  // console.log("listings", listings)
+  console.log("in function log: ", minPrice, listingCount, platformCount)
   
   return (
-    <Container centered>
-        <ListingCardList listings={listings} />
+    <Container centered="true">
+      <h3>There are currently {listingCount} Hulks listed for sale across {platformCount} sites that are being tracked.  The lowest price listed currently is {minPrice} and the highest price is {maxPrice}.</h3>
+      <ListingCardList listings={listings} />
+      {/*} <ListingTable listings={listings} />*/}
     </Container>
   )
 }
