@@ -5,9 +5,11 @@ import App from './components/App'
 // import AppTable from './components/AppTable'
 import AppAG from './components/AppAG'
 import AppAGServerSide from './components/AppAGServerSide'
+import logoType from './images/Logotype1.png'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
-		<AppAG />
+    <img src={logoType}/>
+    <AppAG />
 	</React.StrictMode>
 )
