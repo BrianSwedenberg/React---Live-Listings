@@ -4,8 +4,9 @@ import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import 'ag-grid-enterprise'; // the AG Grid Enterprise Package
 // import listingData from '/LiveListingCounts.json'
 
+
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
-// import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
+import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 
 // // Creates a client using Application Default Credentials
 // const {Storage} = require('@google-cloud/storage');
@@ -196,7 +197,7 @@ const AppAG = () => {
      {/*<button onClick={buttonListener}>Push Me</button>*/}
 
      {/* On div wrapping Grid a) specify theme CSS Class Class and b) sets Grid size */}
-     <div className="ag-theme-alpine" style={{width: 2400, height: 800}}>
+     <div className="ag-theme-alpine" style={{width: 2400, height: 1200}}>
      {/*<div className="ag-theme-alpine" style={{width: 1250, height: 800}}>*/}
 
        <AgGridReact
