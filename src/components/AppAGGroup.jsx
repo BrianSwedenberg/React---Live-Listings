@@ -40,7 +40,7 @@ const AppAGGroup = () => {
     { field: 'platformName', filter: true, headerName: 'Platform Name', rowGroup: true, hide: true },
     // {field: 'CurrentListings', filter: true, floatingFilter: false},
 
-    { field: 'listPrice', filter: true, floatingFilter: false, aggFunc: 'count', headerName: 'List Price' },
+    { field: 'listPrice', filter: true, floatingFilter: false, aggFunc: 'count', headerName: 'Total Live Listings' },
     { field: 'listPrice', filter: true, floatingFilter: false, aggFunc: 'min', valueFormatter: currencyFormatter, headerName: 'Lowest Listed Price' },
     { field: 'listPrice', filter: true, floatingFilter: false, aggFunc: 'median', valueFormatter: currencyFormatter, headerName: 'Median Listed Price' },
     // {field: 'listPrice', filter: true, floatingFilter: false, aggFunc: 'avg', valueFormatter: currencyFormatter, headerName : 'List Price Avg'},
