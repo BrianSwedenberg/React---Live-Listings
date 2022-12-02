@@ -8,6 +8,9 @@ import listingData from '/GridData_Simple.json'
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 
+// import { BigQuery } from '@google-cloud/bigquery'
+// const BQ = new BigQuery()
+
 // // Creates a client using Application Default Credentials
 // const {Storage} = require('@google-cloud/storage');
 // const storage = new Storage();
@@ -38,6 +41,17 @@ const AppAGGroup = () => {
     { field: 'baseRef', filter: true, headerName: 'Base Ref Number', rowGroup: true, hide: true },
     { field: 'fullRef', filter: true, headerName: 'Full Ref Number', rowGroup: true, hide: true },
     { field: 'platformName', filter: true, headerName: 'Platform Name', rowGroup: true, hide: true },
+    { field: 'hasBox', filter: true, headerName: 'Has Box', hide: true},
+    { field: 'hasPapers', filter: true, headerName: 'Has Papers', hide: true},
+    { field: 'watchCondition', filter: true, headerName: 'Watch Condition', hide: true},
+    { field: 'watchYear', filter: true, headerName: 'Watch Year', hide: true},
+    // { field: 'link', headerName: 'Listing Link', 
+    //    cellRenderer:(params) => {
+    //      var linkData = params.value;
+    //      var newLink = '<a href="www.google.com">Listing Link</a>'
+    //      return newLink
+    //    }
+    // },
     // {field: 'CurrentListings', filter: true, floatingFilter: false},
 
     { field: 'listPrice', filter: true, floatingFilter: false, aggFunc: 'count', headerName: 'Total Live Listings' },
@@ -157,7 +171,7 @@ const AppAGGroup = () => {
       {/*<button onClick={buttonListener}>Push Me</button>*/}
 
       {/* On div wrapping Grid a) specify theme CSS Class Class and b) sets Grid size */}
-      <div className="ag-theme-alpine" style={{ width: 1600, height: 1200 }}>
+      <div className="ag-theme-alpine" style={{ width: 2400, height: 1200 }}>
         {/*<div className="ag-theme-alpine" style={{width: 1250, height: 800}}>*/}
 
         <AgGridReact

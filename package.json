@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/bigquery": "^6.0.3",
     "@google-cloud/storage": "^6.7.0",
     "ag-grid-community": "^28.2.0",
     "ag-grid-enterprise": "^28.2.0",

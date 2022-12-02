@@ -2,55 +2,57 @@ import React, { useState, useRef, useEffect, useMemo, useCallback} from 'react';
 import { render } from 'react-dom';
 import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import 'ag-grid-enterprise'; // the AG Grid Enterprise Package
+import BrandList from "/src/Data/BrandList.json";
 // import listingData from '/LiveListingCounts.json'
+// import JSON from 'json';
 
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 // import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 
-// // Creates a client using Application Default Credentials
-// import {Storage} = from '@google-cloud/storage';
-// const storage = new Storage();
 
-const getServerSideDatasource = (server) => {
-  return {
-    getRows: (params) => {
-      // adding delay to simulate real server call
-      setTimeout(function () {
-        var response = server.getResponse(params.request);
-        if (response.success) {
-          // call the success callback
-          params.success({
-            rowData: response.rows,
-            rowCount: response.lastRow,
-          });
-        } else {
-          // inform the grid request failed
-          params.fail();
+const datasource = {
+    rowCount: undefined,
+    getRows(params) {
+      // console.log(JSON.stringify(params.request, null, 1));
+      console.log('datasource get rows params - ', params)
+      console.log('params sort model - ', params.request.sortModel)
+      let start_row = params.request.startRow
+      let row_count = params.request.endRow - params.request.startRow
+      // const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/fetchLiveListingsGridDataRows?' + new URLSearchParams({"start_row": start_row, "row_count": row_count}).toString();
+      const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/fetchLiveListingsGridDataRows-Request';
+      console.log('datasource - ', apiURL)
+      console.log(params.request)
+      fetch(apiURL, {
+          method: 'POST',
+          // mode: 'cors',
+          body: JSON.stringify(params.request)
         }
-      }, 500);
-    },
-  };
+      )
+         .then(response => response.json())
+         .then(response => {
+            params.successCallback(response);
+            console.log(response);
+         })
+         .catch(error => {
+             console.error(error);
+             params.failCallback();
+         })       
+      // setTimeout(function () {
+      //   if (response.success) {
+      //     // supply rows for requested block to grid
+      //     console.log(response.rows)
+      //     params.successCallback(response);
+          
+      //   } else {
+      //     params.fail();
+      //   }
+      // }, 500);
+      
+    }
 };
 
 
-const getFakeServer = (allData) => {
-  return {
-    getResponse: (request) => {
-      console.log(
-        'asking for rows: ' + request.startRow + ' to ' + request.endRow
-      );
-      // take a slice of the total rows
-      var rowsThisPage = allData.slice(request.startRow, request.endRow);
-      // if row count is known, it's possible to skip over blocks
-      var lastRow = allData.length;
-      return {
-        success: true,
-        rows: rowsThisPage,
-        lastRow: lastRow,
-      };
-    },
-  };
-};
+
 
 const AppAGServerSide = () => {
 
@@ -72,17 +74,22 @@ const AppAGServerSide = () => {
   
    // Each Column Definition results in one Column.
    const [columnDefs, setColumnDefs] = useState([
-     {field: 'brandName_', filter: true, cellRenderer: 'agGroupCellRenderer', headerName: 'Brand Name'},
-     {field: 'familyName_', filter: true, headerName: 'Family Name'},
-     {field: 'baseRef_', filter: true, headerName: 'Base Ref Number'},
-     {field: 'fullRef_', filter: true, headerName: 'Full Ref Number'},
+     {
+       field: 'brandName', 
+       type: 'text', 
+       filter: 'agSetColumnFilter',
+       filterParams: {
+         values: BrandList
+       },
+       sortable:true,  
+       cellRenderer: 'agGroupCellRenderer', 
+       headerName: 'Brand Name'
+     },
+     {field: 'familyName', filter: true, sortable:true, headerName: 'Family Name'},
+     {field: 'baseRef', filter: true, sortable:true, headerName: 'Base Ref Number'},
+     {field: 'fullRef', filter: true, sortable:true, headerName: 'Full Ref Number'},
      // {field: 'CurrentListings', filter: true, floatingFilter: false},
-     {field: 'listingID_nunique', filter: true, floatingFilter: false, headerName : 'Total Live Listings'},
-     {field: 'listPrice_min', filter: true, floatingFilter: false, valueFormatter: currencyFormatter, headerName : 'Lowest Listed Price'},
-     {field: 'listPrice_mean', filter: true, floatingFilter: false, valueFormatter: currencyFormatter, headerName : 'Average Listed Price'},
-     {field: 'listPrice_max', filter: true, floatingFilter: false, valueFormatter: currencyFormatter, headerName : 'Highest Listed Price'}
-     // {field: 'AvgPrice', filter: true, floatingFilter: false, valueFormatter: currencyFormatter},
-     // {field: 'HighestPrice', filter: true, floatingFilter: false, valueFormatter: currencyFormatter}
+     {field: 'listPrice', sortable:true, headerName : 'List Price'}
    ]);
 
    // DefaultColDef sets props common to all Columns
@@ -90,127 +97,73 @@ const AppAGServerSide = () => {
       sortable: true,
       floatingFilter: true
    }));
+  const columnTypes = useMemo(() => {
+    return {
+      text: { filter: 'agTextColumnFilter' },
+    };
+  }, []);
 
   // Fetch data file from api endpoint
   const onGridReady = useCallback((params) => {
-      console.log('on grid ready')
-      fetch('https://us-east4-centered-arbor-354419.cloudfunctions.net/fetchLiveListingsGridData')
-       .then(result => result.json())
-       .then((data) => {
-        var server = getFakeServer(data);
-        var datasource = getServerSideDatasource(server);
-        params.api.setServerSideDatasource(datasource);
-      });
-    
+      console.log('on grid ready')     
+      params.api.setServerSideDatasource(datasource);
   }, []);
-
-   // useEffect(() => {
-   //   fetch('https://us-east4-centered-arbor-354419.cloudfunctions.net/fetchLiveListingsCountSimple')
-   //   .then(result => result.json())
-   //   .then(rowData => setRowData(rowData))
-   // }, []);
-
 
 
   
   const onFirstDataRendered = useCallback((params) => {
       // arbitrarily expand a row for presentational purposes
       setTimeout(function () {
-        gridRef.current.api.getDisplayedRowAtIndex(0).setExpanded(true);
+        gridRef.current.api.getDisplayedRowAtIndex(0).setExpanded(false);
       }, 0);
   }, []);
 
-  // const detailCellRendererParams = useMemo(() => {
-  //     console.log('detail renderer')
-  //     return {
-  //       detailGridOptions: {
-  //         columnDefs: [
-  //           { field: 'platformName' },
-  //           { field: 'brandName' },
-  //           { field: 'familyName' },
-  //           { field: 'fullRef' },
-  //           { field: 'listPrice' },
-  //           { field: 'link'}
-            
-            
-  //         ],
-  //         defaultColDef: {
-  //           flex: 1,
-  //         },
-  //       },
-  //       getDetailRowData: (params) => {
-  //         console.log('detail callback')
-  //         params.successCallback(params.data.listing_detail);
-  //       },
-  //     };
-  // }, []);
 
-  // console.log(rowData)
-  
 
-  const masterDetail = true
-
-    
-  const gridOptionsLevel3 = {
-    // columnDefs: columnDefs,
-    masterDetail: false,
-    columnDefs: [
-        { field: 'platformName', cellRenderer: 'agGroupCellRenderer' },
-        { field: 'brandName' },
-        { field: 'familyName' },
-        { field: 'baseRef' },
-        { field: 'fullRef' },
-        { field: 'hasBox' },
-        { field: 'hasPapers' },
-        { field: 'listPrice' },
-        { field: 'link' }
+  // const gridOptionsLevel2 = {
+  //   columnDefs: [
+  //       { field: 'platformName_', cellRenderer: 'agGroupCellRenderer' },
+  //       { field: 'brandName_' },
+  //       { field: 'familyName_' },
+  //       { field: 'fullRef_' },
+  //       {field: 'listingID_nunique', filter: true, floatingFilter: false, headerName : 'Total Live Listings'},
+  //    {field: 'listPrice_min', filter: true, floatingFilter: false, valueFormatter: currencyFormatter, headerName : 'Lowest Listed Price'},
+  //    {field: 'listPrice_mean', filter: true, floatingFilter: false, valueFormatter: currencyFormatter, headerName : 'Average Listed Price'},
+  //    {field: 'listPrice_max', filter: true, floatingFilter: false, valueFormatter: currencyFormatter, headerName : 'Highest Listed Price'}
               
-    ]
-  }
-
-  const gridOptionsLevel2 = {
-    columnDefs: [
-        { field: 'platformName_', cellRenderer: 'agGroupCellRenderer' },
-        { field: 'brandName_' },
-        { field: 'familyName_' },
-        { field: 'fullRef_' },
-        {field: 'listingID_nunique', filter: true, floatingFilter: false, headerName : 'Total Live Listings'},
-     {field: 'listPrice_min', filter: true, floatingFilter: false, valueFormatter: currencyFormatter, headerName : 'Lowest Listed Price'},
-     {field: 'listPrice_mean', filter: true, floatingFilter: false, valueFormatter: currencyFormatter, headerName : 'Average Listed Price'},
-     {field: 'listPrice_max', filter: true, floatingFilter: false, valueFormatter: currencyFormatter, headerName : 'Highest Listed Price'}
+  //   ],
+  //   masterDetail: true,
+  //   detailCellRendererParams:{
+  //     detailGridOptions: gridOptionsLevel3,
+  //     getDetailRowData: function (params) {
+  //       // console.log('detail callback')
+  //       params.successCallback(params.data.listing_detail);
+  //     },
+  //     // columnDefs: [
+  //     //   { field: 'platformName' },
+  //     //   { field: 'brandName' },
+  //     //   { field: 'familyName' },
+  //     //   { field: 'fullRef' }           
               
-    ],
-    masterDetail: true,
-    detailCellRendererParams:{
-      detailGridOptions: gridOptionsLevel3,
-      getDetailRowData: function (params) {
-        // console.log('detail callback')
-        params.successCallback(params.data.listing_detail);
-      },
-      // columnDefs: [
-      //   { field: 'platformName' },
-      //   { field: 'brandName' },
-      //   { field: 'familyName' },
-      //   { field: 'fullRef' }           
-              
-      // ],
-      defaultColDef: {
-        flex: 1,
-      }
-    }
-  }
+  //     // ],
+  //     defaultColDef: {
+  //       flex: 1,
+  //     }
+  //   }
+  // }
   
   const gridOptionsLevel1 = {
     columnDefs: columnDefs,
-    masterDetail: true,
+    masterDetail: false,
     onGridReady: onGridReady,
     onFirstDataRendered: onFirstDataRendered,
-    detailCellRendererParams:{
-      detailGridOptions: gridOptionsLevel2,
-      getDetailRowData: function (params) {
-        // console.log('detail callback')
-        params.successCallback(params.data.platform_detail);
-      },
+    ServerSideDatasource: datasource
+    // detailCellRendererParams:{
+    //   detailGridOptions: gridOptionsLevel2,
+    //   getDetailRowData: function (params) {
+    //     // console.log('detail callback')
+    //     params.successCallback(params.data.platform_detail);
+    //   },
       // columnDefs: [
       //   { field: 'platformName_', cellRenderer: 'agGroupCellRenderer' },
       //   { field: 'brandName_' },
@@ -218,10 +171,10 @@ const AppAGServerSide = () => {
       //   { field: 'fullRef_' }           
               
       // ],
-      defaultColDef: {
-        flex: 1,
-      }
-    }
+      // defaultColDef: {
+      //   flex: 1,
+      // }
+    // }
   }
 
 
@@ -245,11 +198,14 @@ const AppAGServerSide = () => {
            gridOptions={gridOptionsLevel1}
            
            ref={gridRef} // Ref for accessing Grid's API
-           rowData={rowData} // Row Data for Rows
+           // rowData={rowData} // Row Data for Rows  DONT NEED THIS FOR SERVER-SIDE MODEL
+           // columnTypes={columnTypes}
+           
            // columnDefs={columnDefs} // Column Defs for Columns
            defaultColDef={defaultColDef} // Default Column Properties
            rowModelType={'serverSide'}
-           // serverSideInfiniteScroll={true}
+           serverSideInfiniteScroll={true}
+           cacheBlockSize={200}
 
            // masterDetail={masterDetail}
            // animateRows={true} // Optional - set to 'true' to have rows animate when sorted
