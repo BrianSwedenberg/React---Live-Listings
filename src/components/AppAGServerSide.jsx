@@ -3,8 +3,8 @@ import { render } from 'react-dom';
 import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import 'ag-grid-enterprise'; // the AG Grid Enterprise Package
 import BrandList from "/src/Data/BrandList.json";
-// import listingData from '/LiveListingCounts.json'
-// import JSON from 'json';
+import LinkCellRenderer from './linkCellRenderer.jsx'
+
 
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 // import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
@@ -72,6 +72,7 @@ const AppAGServerSide = () => {
   };
 
   
+  
    // Each Column Definition results in one Column.
    const [columnDefs, setColumnDefs] = useState([
      {
@@ -89,7 +90,9 @@ const AppAGServerSide = () => {
      {field: 'baseRef', filter: true, sortable:true, headerName: 'Base Ref Number'},
      {field: 'fullRef', filter: true, sortable:true, headerName: 'Full Ref Number'},
      // {field: 'CurrentListings', filter: true, floatingFilter: false},
-     {field: 'listPrice', sortable:true, headerName : 'List Price'}
+     {field: 'platformName', headerName: 'Platform Name'},
+     {field: 'listPrice', sortable:true, valueFormatter: currencyFormatter, headerName : 'List Price'},
+     {field: 'link', headerName: 'Listing Link', cellRenderer: LinkCellRenderer}
    ]);
 
    // DefaultColDef sets props common to all Columns
