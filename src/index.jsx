@@ -11,6 +11,7 @@ import AppAGServerSide from './components/AppAGServerSide'
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
     <img src={logoType}/>
+    <h2 onClick={() => {console.log('clicked')}}>Login</h2>
     <AppAGServerSide />
 	</React.StrictMode>
 )
