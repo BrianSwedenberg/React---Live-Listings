@@ -17,10 +17,20 @@ export function initNetlifyIdentity() {
   document.body.appendChild(script)
 }
 
+function openNetlifyModal(){
+  const  netlifyModal = window.netlifyIdentity();
+
+  if(netlifyIdentity)
+    netlifyIdentity.open();
+}
+
+
+initNetlifyIdentity();
+
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
     <img src={logoType}/>
-    <h2 onClick={() => {console.log('clicked')}}>Login</h2>
+    <h2 onClick={() => { openNetlifyModal() }}>Login</h2>
     <AppAGServerSide />
 	</React.StrictMode>
 )
