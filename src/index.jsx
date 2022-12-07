@@ -9,12 +9,13 @@ import logoType from './images/Logotype1.png'
 import AppAGServerSide from './components/AppAGServerSide'
 import netlifyIdentity from 'netlify-identity-widget'
 
-// netlifyIdentity.init({
-//   container: '#netlify-modal', // defaults to document.body
-//   locale: 'en' // defaults to 'en'
-// });
+netlifyIdentity.init({
+  container: '#netlify-modal', // defaults to document.body
+  locale: 'en' // defaults to 'en'
+});
 
 // netlifyIdentity.open();
+netlifyIdentity.open()
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <head>
