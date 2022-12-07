@@ -9,25 +9,19 @@ import logoType from './images/Logotype1.png'
 import AppAGServerSide from './components/AppAGServerSide'
 import netlifyIdentity from 'netlify-identity-widget'
 
-netlifyIdentity.init({
-  container: '#netlify-modal', // defaults to document.body
-  locale: 'en' // defaults to 'en'
-});
+window.netfliyIdentity = netlifyIdentity;
 
-// netlifyIdentity.open();
-netlifyIdentity.open()
+// // netlifyIdentity.open();
+netlifyIdentity.init();
+
+netlifyIdentity.open();
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <head>
-      <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    </head>
-    <body >
+
       
-      <div data-netlify-identity-menu></div>
-      <div data-netlify-identity-button>Login with Netlify Identity</div>
       <img src={logoType}/>
       {/* <h2 onClick={() => { console.log('login clicked ...') }}>Login</h2> */}
       <AppAGServerSide />
-    </body>
+    
 	</React.StrictMode>
 )

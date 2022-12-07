@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 import {Container} from 'semantic-ui-react'
 import ListingCardList from './ListingCardList'
-import ListingTable from './ListingTable'
+// import ListingTable from './ListingTable'
 
 
 let dollarUS = Intl.NumberFormat("en-US", {
