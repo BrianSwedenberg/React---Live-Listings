@@ -91,6 +91,10 @@ const AppAGServerSide = () => {
      {field: 'fullRef', filter: true, sortable:true, headerName: 'Full Ref Number'},
      // {field: 'CurrentListings', filter: true, floatingFilter: false},
      {field: 'platformName', headerName: 'Platform Name'},
+     {field: 'hasBox', headerName: 'Has Original Box'},
+     {field: 'hasPapers', headerName: 'Has Papers'},
+     
+     
      {field: 'listPrice', sortable:true, valueFormatter: currencyFormatter, headerName : 'List Price'},
      {field: 'link', headerName: 'Listing Link', cellRenderer: LinkCellRenderer}
    ]);
