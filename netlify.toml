@@ -1,6 +1,6 @@
 [[redirects]]
-  from = "/"
+  from = "/*"
   to = "/login.html"
   status = 301
-  force = false
+  force = true
   conditions = {Role = ["Test"]}
