@@ -16,8 +16,6 @@ const datasource = {
       // console.log(JSON.stringify(params.request, null, 1));
       console.log('datasource get rows params - ', params)
       console.log('params sort model - ', params.request.sortModel)
-      let start_row = params.request.startRow
-      let row_count = params.request.endRow - params.request.startRow
       // const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/fetchLiveListingsGridDataRows?' + new URLSearchParams({"start_row": start_row, "row_count": row_count}).toString();
       const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/fetchLiveListingsGridDataRows-Request';
       console.log('datasource - ', apiURL)
@@ -30,7 +28,11 @@ const datasource = {
       )
          .then(response => response.json())
          .then(response => {
-            params.successCallback(response);
+            // params.successCallback(response.rows);
+           params.success({
+             rowData: response.rows,
+             rowCount: response.lastRow
+           })
             console.log(response);
          })
          .catch(error => {
@@ -86,18 +88,23 @@ const AppAGServerSide = () => {
        cellRenderer: 'agGroupCellRenderer', 
        headerName: 'Brand Name'
      },
-     {field: 'familyName', filter: true, sortable:true, headerName: 'Family Name'},
-     {field: 'baseRef', filter: true, sortable:true, headerName: 'Base Ref Number'},
-     {field: 'fullRef', filter: true, sortable:true, headerName: 'Full Ref Number'},
+     {field: 'familyName', filter: true, sortable:true, headerName: 'Family Name', resizable: true},
+     {field: 'baseRef', filter: 'agTextColumnFilter', sortable:true, headerName: 'Base Ref Number', resizable: true},
+     {field: 'fullRef', filter: 'agTextColumnFilter', sortable:true, headerName: 'Full Ref Number',resizable: true},
      // {field: 'CurrentListings', filter: true, floatingFilter: false},
-     {field: 'platformName', headerName: 'Platform Name'},
-     {field: 'hasBox', headerName: 'Has Original Box'},
-     {field: 'hasPapers', headerName: 'Has Papers'},
+     {field: 'platformName', headerName: 'Platform Name', resizable: true},
+     {field: 'hasBox', headerName: 'Has Original Box', resizable: true},
+     {field: 'hasPapers', headerName: 'Has Papers', resizable: true},
      
      
-     {field: 'listPrice', sortable:true, valueFormatter: currencyFormatter, headerName : 'List Price'},
-     {field: 'link', headerName: 'Listing Link', cellRenderer: LinkCellRenderer}
+     {field: 'listPrice', sortable:true, valueFormatter: currencyFormatter, headerName : 'List Price', resizable: true},
+     {field: 'link', headerName: 'Listing Link', cellRenderer: LinkCellRenderer, resizable: true}
    ]);
+
+  const [style, setStyle] = useState({
+    height: '100%',
+    width: '100%',
+  });
 
    // DefaultColDef sets props common to all Columns
    const defaultColDef = useMemo( ()=> ({
@@ -112,10 +119,12 @@ const AppAGServerSide = () => {
 
   // Fetch data file from api endpoint
   const onGridReady = useCallback((params) => {
-      console.log('on grid ready')     
+      console.log('on grid ready')
       params.api.setServerSideDatasource(datasource);
+      gridRef.current.api.sizeColumnsToFit({
+        defaultMinWidth: 100
+      });
   }, []);
-
 
   
   const onFirstDataRendered = useCallback((params) => {
@@ -192,13 +201,13 @@ const AppAGServerSide = () => {
 
 
  return (
-   <div>
+   <div style={style}>
 
      {/* Example using Grid's API */}
      {/*<button onClick={buttonListener}>Push Me</button>*/}
 
      {/* On div wrapping Grid a) specify theme CSS Class Class and b) sets Grid size */}
-     <div className="ag-theme-alpine" style={{width: 2400, height: 800}}>
+     <div className="ag-theme-alpine" style={{height: 1600}}>
      {/*<div className="ag-theme-alpine" style={{width: 1250, height: 800}}>*/}
 
        <AgGridReact
@@ -213,6 +222,7 @@ const AppAGServerSide = () => {
            rowModelType={'serverSide'}
            serverSideInfiniteScroll={true}
            cacheBlockSize={200}
+           debug={true}
 
            // masterDetail={masterDetail}
            // animateRows={true} // Optional - set to 'true' to have rows animate when sorted
