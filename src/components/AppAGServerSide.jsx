@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect, useMemo, useCallback} from 'react';
 import { render } from 'react-dom';
 import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import 'ag-grid-enterprise'; // the AG Grid Enterprise Package
+
+
 import BrandList from "/src/Data/BrandList.json";
 import LinkCellRenderer from './linkCellRenderer.jsx'
 
@@ -31,7 +33,8 @@ const datasource = {
             // params.successCallback(response.rows);
            params.success({
              rowData: response.rows,
-             rowCount: response.lastRow
+             endRow: response.lastRow,
+             rowCount: response.rowCount
            })
             console.log(response);
          })
@@ -39,16 +42,6 @@ const datasource = {
              console.error(error);
              params.failCallback();
          })       
-      // setTimeout(function () {
-      //   if (response.success) {
-      //     // supply rows for requested block to grid
-      //     console.log(response.rows)
-      //     params.successCallback(response);
-          
-      //   } else {
-      //     params.fail();
-      //   }
-      // }, 500);
       
     }
 };
@@ -133,40 +126,6 @@ const AppAGServerSide = () => {
         gridRef.current.api.getDisplayedRowAtIndex(0).setExpanded(false);
       }, 0);
   }, []);
-
-
-
-  // const gridOptionsLevel2 = {
-  //   columnDefs: [
-  //       { field: 'platformName_', cellRenderer: 'agGroupCellRenderer' },
-  //       { field: 'brandName_' },
-  //       { field: 'familyName_' },
-  //       { field: 'fullRef_' },
-  //       {field: 'listingID_nunique', filter: true, floatingFilter: false, headerName : 'Total Live Listings'},
-  //    {field: 'listPrice_min', filter: true, floatingFilter: false, valueFormatter: currencyFormatter, headerName : 'Lowest Listed Price'},
-  //    {field: 'listPrice_mean', filter: true, floatingFilter: false, valueFormatter: currencyFormatter, headerName : 'Average Listed Price'},
-  //    {field: 'listPrice_max', filter: true, floatingFilter: false, valueFormatter: currencyFormatter, headerName : 'Highest Listed Price'}
-              
-  //   ],
-  //   masterDetail: true,
-  //   detailCellRendererParams:{
-  //     detailGridOptions: gridOptionsLevel3,
-  //     getDetailRowData: function (params) {
-  //       // console.log('detail callback')
-  //       params.successCallback(params.data.listing_detail);
-  //     },
-  //     // columnDefs: [
-  //     //   { field: 'platformName' },
-  //     //   { field: 'brandName' },
-  //     //   { field: 'familyName' },
-  //     //   { field: 'fullRef' }           
-              
-  //     // ],
-  //     defaultColDef: {
-  //       flex: 1,
-  //     }
-  //   }
-  // }
   
   const gridOptionsLevel1 = {
     columnDefs: columnDefs,
@@ -174,23 +133,7 @@ const AppAGServerSide = () => {
     onGridReady: onGridReady,
     onFirstDataRendered: onFirstDataRendered,
     ServerSideDatasource: datasource
-    // detailCellRendererParams:{
-    //   detailGridOptions: gridOptionsLevel2,
-    //   getDetailRowData: function (params) {
-    //     // console.log('detail callback')
-    //     params.successCallback(params.data.platform_detail);
-    //   },
-      // columnDefs: [
-      //   { field: 'platformName_', cellRenderer: 'agGroupCellRenderer' },
-      //   { field: 'brandName_' },
-      //   { field: 'familyName_' },
-      //   { field: 'fullRef_' }           
-              
-      // ],
-      // defaultColDef: {
-      //   flex: 1,
-      // }
-    // }
+
   }
 
 
@@ -222,6 +165,7 @@ const AppAGServerSide = () => {
            rowModelType={'serverSide'}
            serverSideInfiniteScroll={true}
            cacheBlockSize={200}
+           maxBlocksInCache={2}
            debug={true}
 
            // masterDetail={masterDetail}

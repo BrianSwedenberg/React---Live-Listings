@@ -20,9 +20,9 @@ const user = netlifyIdentity.currentUser();
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
       <img src={logoType}/>
-      {/* <h2 onClick={() => { console.log('login clicked ...') }}>Login</h2> */}
     <div >
-      <AppAGServerSide />
+      {/*<AppAGServerSide />*/}
+      <App />
     </div>
 	</React.StrictMode>
 )
