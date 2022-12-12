@@ -23,8 +23,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <img src={logoType}/>
     <div >
       {/*<AppAGServerSide />*/}
-      <Login />
-      {/*<App />*/}
+      {/*<Login />*/}
+      <App />
     </div>
 	</React.StrictMode>
 )
