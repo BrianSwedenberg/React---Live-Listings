@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import 'ag-grid-enterprise'; // the AG Grid Enterprise Package
 // import listingData from '/LiveListingCounts.json'
-import listingData from '/GridData_Simple.json'
+// import listingData from '/GridData_Simple.json'
 
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
