@@ -7,6 +7,7 @@ import AppAG from './components/AppAG'
 import AppAGGroup from './components/AppAGGroup'
 import logoType from './images/Logotype1.png'
 import AppAGServerSide from './components/AppAGServerSide'
+import Login from './components/login'
 import netlifyIdentity from 'netlify-identity-widget'
 
 window.netfliyIdentity = netlifyIdentity;
@@ -22,7 +23,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <img src={logoType}/>
     <div >
       {/*<AppAGServerSide />*/}
-      <App />
+      <Login />
+      {/*<App />*/}
     </div>
 	</React.StrictMode>
 )
