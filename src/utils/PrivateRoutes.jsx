@@ -4,8 +4,11 @@ import netlifyIdentity from 'netlify-identity-widget'
 window.netfliyIdentity = netlifyIdentity;
 netlifyIdentity.init();
 const user = netlifyIdentity.currentUser();
-const user_metadata = user['app_metadata']; 
-const user_roles = user_metadata['roles']; 
+if (typeof user != 'undefined' ) {
+  const user_metadata = user['app_metadata']; 
+  const user_roles = user_metadata['roles']; 
+}
+
 
 let auth = false;
 
