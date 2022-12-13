@@ -9,10 +9,10 @@ window.netfliyIdentity = netlifyIdentity;
 const user = netlifyIdentity.currentUser();
 
 // // netlifyIdentity.open();
-// netlifyIdentity.init({
-//   container: '#netlify-modal', // defaults to document.body
-//   locale: 'en' // defaults to 'en'
-// });
+netlifyIdentity.init({
+  container: '#netlify-modal', // defaults to document.body
+  locale: 'en' // defaults to 'en'
+});
 
 const Button = styled.button`
   background-color: #00A9E8;
