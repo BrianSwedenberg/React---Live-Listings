@@ -7,10 +7,6 @@ import './Login.css'
 
 window.netfliyIdentity = netlifyIdentity;
 netlifyIdentity.init();
-// const user = netlifyIdentity.currentUser();
-// const user_metadata = user['app_metadata']; 
-// const user_roles = user_metadata['roles']; 
-
 
 const Button = styled.button`
   background-color: #00A9E8;
@@ -20,12 +16,10 @@ const Button = styled.button`
   border-radius: 5px;
   font-size: 24px;
 `
-
 const buttonPress = () => {
   // alert("button click");
   netlifyIdentity.open();
 }
-
 
 const Login = () => {
   return (

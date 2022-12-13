@@ -8,6 +8,9 @@ if (user == null ) { console.log('null user'); }
 else{  
   const user_metadata = user['app_metadata']; 
   const user_roles = user_metadata['roles']; 
+  console.log(user)
+  console.log(user_metadata)
+  console.log(user_roles)
 }
 
 let auth = false;
