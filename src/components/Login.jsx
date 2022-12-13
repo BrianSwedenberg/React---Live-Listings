@@ -11,7 +11,6 @@ netlifyIdentity.init();
 // const user_metadata = user['app_metadata']; 
 // const user_roles = user_metadata['roles']; 
 
-console.log(user)
 
 const Button = styled.button`
   background-color: #00A9E8;
