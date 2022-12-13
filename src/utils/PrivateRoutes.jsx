@@ -12,9 +12,8 @@ else{
 
 let auth = false;
 
-
 const PrivateRoutes = () => {
-  if (user == null ) { console.log('null user') }
+  if (typeof user_roles == 'undefined' ) { console.log('undefined user roles') }
   else if (user_roles.includes('TestUser')) { {auth=true}; }
   
   return(
