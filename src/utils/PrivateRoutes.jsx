@@ -14,7 +14,7 @@ let auth = false;
 
 
 const PrivateRoutes = () => {
-  if (user_roles == null ) { console.log('null user') }
+  if (user == null ) { console.log('null user') }
   else if (user_roles.includes('TestUser')) { {auth=true}; }
   
   return(
