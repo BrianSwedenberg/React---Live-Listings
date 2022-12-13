@@ -11,6 +11,7 @@ else{
   console.log(user)
   console.log(user_metadata)
   console.log(user_roles)
+  console.log(typeof user_roles)
 }
 
 let auth = false;
