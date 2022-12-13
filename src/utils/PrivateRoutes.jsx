@@ -4,10 +4,13 @@ import netlifyIdentity from 'netlify-identity-widget'
 window.netfliyIdentity = netlifyIdentity;
 netlifyIdentity.init();
 const user = netlifyIdentity.currentUser();
+const user_metadata; 
+const user_roles;
+
 if (user == null ) { console.log('null user'); }
 else{  
-  const user_metadata = user['app_metadata']; 
-  const user_roles = user_metadata['roles']; 
+  user_metadata = user['app_metadata']; 
+  user_roles = user_metadata['roles']; 
   console.log(user)
   console.log(user_metadata)
   console.log(user_roles)
