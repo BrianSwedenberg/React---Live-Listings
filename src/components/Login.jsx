@@ -8,7 +8,7 @@ import './Login.css'
 window.netfliyIdentity = netlifyIdentity;
 netlifyIdentity.init();
 const user = netlifyIdentity.currentUser();
-console.log(user)
+console.log(user['app_metadata'])
 
 const Button = styled.button`
   background-color: #00A9E8;
