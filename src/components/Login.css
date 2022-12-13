@@ -1,0 +1,25 @@
+.LoginPanel{
+  width: 50%;
+/*   border: 5px solid; */
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100vh;
+}
+
+.logoType{
+/*   display: flex; */
+/*   max-width: 50%; */
+/*   display: inline-block; */
+}
+
+hr{
+  border: 0;
+  background: black;
+  height: 1px;
+  width: 55%;
+}
