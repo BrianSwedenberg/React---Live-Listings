@@ -3,4 +3,4 @@
   to = "/login"
   status = 300
 #   force = true
-  conditions = {Role != ["TestUser"]}
+  conditions = {Role = ["TestUser"]}
