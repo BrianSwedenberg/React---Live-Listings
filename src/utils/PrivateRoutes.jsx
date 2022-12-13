@@ -10,16 +10,12 @@ else{
   const user_roles = user_metadata['roles']; 
 }
 
-
 let auth = false;
 
 
 const PrivateRoutes = () => {
-  if (typeof user != 'undefined' ) {
-    if (user_roles.includes('TestUser')) {
-      {auth=true};   
-    }
-  }
+  if (user_roles == null ) { console.log('null user') }
+  else if (user_roles.includes('TestUser')) { {auth=true}; }
   
   return(
     auth ? <Outlet /> : <Navigate to='/login' />
