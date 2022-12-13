@@ -15,11 +15,10 @@ else{
 }
 
 let auth = false;
+if (typeof user_roles == 'undefined' ) { console.log('undefined user roles') }
+else if (user_roles.includes('TestUser')) { {auth=true}; }
 
 const PrivateRoutes = () => {
-  if (typeof user_roles == 'undefined' ) { console.log('undefined user roles') }
-  else if (user_roles.includes('TestUser')) { {auth=true}; }
-  
   return(
     auth ? <Outlet /> : <Navigate to='/login' />
   );
