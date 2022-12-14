@@ -9,7 +9,7 @@ var user_roles = {};
 
 if (user == null ) { console.log('null user'); }
 else{  
-  console.log('user not null')
+  console.log('user not null');
   user_metadata = user['app_metadata']; 
   user_roles = user_metadata['roles']; 
   // console.log(user)
@@ -20,12 +20,14 @@ else{
 
 let auth = false;
 if (typeof user_roles == 'undefined' || user_roles == null ) { console.log('undefined user roles') }
-// else if (user_roles.includes('TestUser')) { 
 else { 
   // {auth=true}; 
   // console.log('auth is true');
   console.log('user_roles exists');
+  console.log(user_roles);
 }
+
+// else if (user_roles.includes('TestUser')) { 
 
 const PrivateRoutes = () => {
   console.log('private routes');
