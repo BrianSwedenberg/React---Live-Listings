@@ -25,16 +25,15 @@ const buttonPress = () => {
 
 
 
-const handleLogin = (params) => {
-  console.log('handle login - ', params);
-  const navigate = useNavigate();
-  // navigate("/")
-}
-
-netlifyIdentity.on('login', user => handleLogin(user))
-
-
 const Login = () => {
+  const handleLogin = (params) => {
+    console.log('handle login - ', params);
+    // const navigate = useNavigate();
+    // navigate("/")
+  }
+
+  netlifyIdentity.on('login', user => handleLogin(user))
+  
   return (
     <div className='LoginPanel'>
       <img src={logoType} class="logoType" />
