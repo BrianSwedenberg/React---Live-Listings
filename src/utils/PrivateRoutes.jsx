@@ -4,8 +4,8 @@ import netlifyIdentity from 'netlify-identity-widget'
 window.netfliyIdentity = netlifyIdentity;
 netlifyIdentity.init();
 const user = netlifyIdentity.currentUser();
-var user_metadata = {}; 
-var user_roles = {};
+var user_metadata = null; 
+var user_roles = null;
 
 if (user == null ) { console.log('null user'); }
 else{  
@@ -19,7 +19,7 @@ else{
 }
 
 let auth = false;
-if (typeof user_roles == 'undefined' || user_roles == null ) { console.log('undefined user roles') }
+if (user_roles == null ) { console.log('undefined user roles') }
 else { 
   // {auth=true}; 
   // console.log('auth is true');
