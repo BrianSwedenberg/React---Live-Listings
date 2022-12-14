@@ -27,8 +27,8 @@ const buttonPress = () => {
 
 const handleLogin = (params) => {
   console.log('handle login - ', params);
-  const navigate = useNavigate();  
-  navigate("/")
+  const navigate = useNavigate();
+  // navigate("/")
 }
 
 netlifyIdentity.on('login', user => handleLogin(user))
@@ -37,13 +37,13 @@ netlifyIdentity.on('login', user => handleLogin(user))
 const Login = () => {
   return (
     <div className='LoginPanel'>
-      <img src={logoType} class="logoType"/>
+      <img src={logoType} class="logoType" />
       <hr class='horizontalLine' />
       <div className="ButtonContainer">
         <Button onClick={buttonPress}>
-          Log In  
+          Log In
         </Button>
-      </div> 
+      </div>
     </div>
   );
 };
