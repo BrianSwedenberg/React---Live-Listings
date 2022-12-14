@@ -7,6 +7,7 @@ import './Login.css'
 
 window.netfliyIdentity = netlifyIdentity;
 netlifyIdentity.init();
+const user = netlifyIdentity.currentUser();
 
 const Button = styled.button`
   background-color: #00A9E8;
@@ -21,7 +22,7 @@ const buttonPress = () => {
   netlifyIdentity.open();
 }
 
-netlifyIdentity.on('login', console.log('logged in'))
+netlifyIdentity.on('login', user => console.log('logged in', user))
 
 const Login = () => {
   return (
