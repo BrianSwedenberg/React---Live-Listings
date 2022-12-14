@@ -22,9 +22,9 @@ let auth = false;
 if (user_roles == null ) { console.log('undefined user roles') }
 else if (user_roles.includes('TestUser')) { 
   {auth=true}; 
-  console.log('auth is true');
-  console.log('user_roles exists');
-  console.log(user_roles);
+  // console.log('auth is true');
+  // console.log('user_roles exists');
+  // console.log(user_roles);
 }
 
 
