@@ -29,6 +29,7 @@ const buttonPress = () => {
 const handleLogin = (params) => {
   console.log('handle login - ', params);
   const navigate = useNavigate();  
+  navigate("/")
 }
 
 netlifyIdentity.on('login', user => handleLogin(user))
