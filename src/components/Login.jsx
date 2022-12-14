@@ -26,9 +26,10 @@ const buttonPress = () => {
 
 
 const Login = () => {
+  const navigate = useNavigate();
+  
   const handleLogin = (params) => {
-    console.log('handle login - ', params);
-    const navigate = useNavigate();
+    console.log('handle login - ', params);  
     // navigate("/")
   }
 
