@@ -32,6 +32,7 @@ const Login = () => {
     console.log('handle login - ', params);  
     // navigate("/", { replace: true});
     navigate(-1);
+    console.log('after navigate');
   }
 
   netlifyIdentity.on('login', user => handleLogin(user))
