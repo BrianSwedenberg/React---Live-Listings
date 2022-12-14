@@ -1,6 +1,6 @@
 import React from 'react'
 // import ReactDOM from 'react-dom/client'
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import netlifyIdentity from 'netlify-identity-widget'
 import styled from 'styled-components';
 import logoType from '../images/Logotype1.png';
@@ -27,7 +27,7 @@ const buttonPress = () => {
 
 const handleLogin = (params) => {
   console.log('handle login - ', params);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // navigate("/")
 }
 
