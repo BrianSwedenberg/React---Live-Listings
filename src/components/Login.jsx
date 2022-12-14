@@ -27,7 +27,7 @@ const buttonPress = () => {
 
 const handleLogin = (params) => {
   console.log('handle login - ', params);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // navigate("/")
 }
 
