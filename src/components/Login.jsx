@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import netlifyIdentity from 'netlify-identity-widget'
 import styled from 'styled-components';
@@ -24,11 +24,11 @@ const buttonPress = () => {
   netlifyIdentity.open();
 }
 
-const navigate = useNavigate();
+
 
 const handleLogin = (params) => {
   console.log('handle login - ', params);
-  
+  const navigate = useNavigate();  
 }
 
 netlifyIdentity.on('login', user => handleLogin(user))
