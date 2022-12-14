@@ -12,7 +12,7 @@ else{
   console.log('user not null');
   user_metadata = user['app_metadata']; 
   user_roles = user_metadata['roles']; 
-  // console.log(user)
+  console.log(user)
   // console.log(user_metadata)
   // console.log(user_roles)
   // console.log(typeof user_roles)
@@ -22,7 +22,7 @@ let auth = false;
 if (user_roles == null ) { console.log('undefined user roles') }
 else if (user_roles.includes('TestUser')) { 
   {auth=true}; 
-  // console.log('auth is true');
+  console.log('auth is true');
   // console.log('user_roles exists');
   // console.log(user_roles);
 }
