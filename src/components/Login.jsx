@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
+// import ReactDOM from 'react-dom/client'
 import { useNavigate } from "react-router";
 import netlifyIdentity from 'netlify-identity-widget'
 import styled from 'styled-components';
