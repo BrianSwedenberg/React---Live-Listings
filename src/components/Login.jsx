@@ -1,5 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { useContext } from "react";
+import { useLocation, useNavigate } from "react-router";
+import { Outlet, Navigate } from 'react-router-dom';
 import netlifyIdentity from 'netlify-identity-widget'
 import styled from 'styled-components';
 import logoType from '../images/Logotype1.png';
@@ -22,7 +25,9 @@ const buttonPress = () => {
   netlifyIdentity.open();
 }
 
+const navigate = useNavigate();
 netlifyIdentity.on('login', user => console.log('logged in', user))
+netlifyIdentity.on('login', navigate("/"));
 
 const Login = () => {
   return (

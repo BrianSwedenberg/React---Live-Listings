@@ -1,5 +1,7 @@
-import { Outlet, Navigate } from 'react-router-dom'
-import netlifyIdentity from 'netlify-identity-widget'
+import { Outlet, Navigate } from 'react-router-dom';
+import netlifyIdentity from 'netlify-identity-widget';
+import { useContext } from 'react';
+import { useLocation } from 'react-router';
 
 window.netfliyIdentity = netlifyIdentity;
 netlifyIdentity.init();
@@ -31,8 +33,9 @@ else if (user_roles.includes('TestUser')) {
 
 const PrivateRoutes = () => {
   console.log('private routes');
+  const location = useLocation();
   return(
-    auth ? <Outlet /> : <Navigate to='/login' />
+    auth ? <Outlet /> : <Navigate to='/login' replace state={{ from: location }}/>
   );
 }
 export default PrivateRoutes
