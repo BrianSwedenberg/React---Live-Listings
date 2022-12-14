@@ -24,10 +24,11 @@ const buttonPress = () => {
   netlifyIdentity.open();
 }
 
-// const navigate = useNavigate();
+const navigate = useNavigate();
 
 const handleLogin = (params) => {
-  console.log(params)
+  console.log('handle login - ', params);
+  
 }
 
 netlifyIdentity.on('login', user => handleLogin(user))
