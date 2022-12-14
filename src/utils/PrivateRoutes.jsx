@@ -28,7 +28,7 @@ else if (user_roles.includes('TestUser')) {
 }
 
 const PrivateRoutes = () => {
-  console.log('private routes');
+  console.log('auth - ', auth);
   return(
     auth ? <Outlet /> : <Navigate to='/login'/>
   );
