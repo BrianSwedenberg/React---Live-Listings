@@ -31,8 +31,7 @@ const Login = () => {
   
   const handleLogin = (params) => {
     console.log('handle login - ', params);  
-    // navigate("/", { replace: true});
-    navigate(-1);
+    navigate("/");
     console.log('after navigate');
   }
 
