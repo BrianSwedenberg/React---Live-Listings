@@ -21,7 +21,7 @@ const buttonPress = () => {
   netlifyIdentity.open();
 }
 
-netlifyIdentity.on('login', window.location.reload())
+netlifyIdentity.on('login', console.log('logged in'))
 
 const Login = () => {
   return (
