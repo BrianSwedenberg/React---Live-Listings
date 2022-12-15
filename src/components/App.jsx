@@ -15,8 +15,6 @@ function App() {
         </Route>
         <Route path='/login' element={<Login />} />
          
-        {/*  <Route path='/' element={<AppAGServerSide/>} />
-          <Route path='/login' element={<Login />} /> */}
       </Routes>
     </Router>
   );

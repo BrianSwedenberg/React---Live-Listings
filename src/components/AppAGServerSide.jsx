@@ -4,10 +4,8 @@ import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import 'ag-grid-enterprise'; // the AG Grid Enterprise Package
 import logoType from '../images/Logotype1.png';
 
-
 import BrandList from "/src/Data/BrandList.json";
 import LinkCellRenderer from './linkCellRenderer.jsx'
-
 
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
@@ -16,10 +14,8 @@ import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 const datasource = {
     rowCount: undefined,
     getRows(params) {
-      // console.log(JSON.stringify(params.request, null, 1));
       console.log('datasource get rows params - ', params)
       console.log('params sort model - ', params.request.sortModel)
-      // const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/fetchLiveListingsGridDataRows?' + new URLSearchParams({"start_row": start_row, "row_count": row_count}).toString();
       const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/fetchLiveListingsGridDataRows-Request';
       console.log('datasource - ', apiURL)
       console.log(params.request)
@@ -148,10 +144,7 @@ const AppAGServerSide = () => {
    <div>
      <img src={logoType}/>
      <div style={style}>
-  
-       {/* Example using Grid's API */}
-       {/*<button onClick={buttonListener}>Push Me</button>*/}
-  
+    
        {/* On div wrapping Grid a) specify theme CSS Class Class and b) sets Grid size */}
        <div className="ag-theme-alpine" style={{height: 1600}}>
        {/*<div className="ag-theme-alpine" style={{width: 1250, height: 800}}>*/}
@@ -160,25 +153,12 @@ const AppAGServerSide = () => {
              gridOptions={gridOptionsLevel1}
              
              ref={gridRef} // Ref for accessing Grid's API
-             // rowData={rowData} // Row Data for Rows  DONT NEED THIS FOR SERVER-SIDE MODEL
-             // columnTypes={columnTypes}
-             
-             // columnDefs={columnDefs} // Column Defs for Columns
              defaultColDef={defaultColDef} // Default Column Properties
              rowModelType={'serverSide'}
              serverSideInfiniteScroll={true}
              cacheBlockSize={200}
              maxBlocksInCache={2}
-             debug={true}
-  
-             // masterDetail={masterDetail}
-             // animateRows={true} // Optional - set to 'true' to have rows animate when sorted
-             // rowSelection='multiple' // Options - allows click selection of rows
-             // onGridReady={onGridReady}
-             // onFirstDataRendered={onFirstDataRendered}
-             // detailCellRendererParams={detailCellRendererParams}
-  
-             // onCellClicked={cellClickedListener} // Optional - registering for Grid Event
+             
              />
        </div>
      </div>

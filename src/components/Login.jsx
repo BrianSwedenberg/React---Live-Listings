@@ -21,7 +21,7 @@ const Button = styled.button`
 `
 const buttonPress = () => {
   // alert("button click");
-  netlifyIdentity.open();
+  netlifyIdentity.open('login');
 }
 
 
