@@ -26,14 +26,13 @@ const PrivateRoutes = () => {
     auth.user = true;
   }
   if (user_roles != null) {
-    if (user_roles.includes('TestUser')) { 
+    if (user_roles.includes('Approved')) { 
       auth.approved = true; 
       // console.log('user_roles exists');
       // console.log(user_roles);
     }
   }
   
-
   console.log('auth - ', auth);
   // console.log('user info - ', user);
   if ( auth.user ) {
