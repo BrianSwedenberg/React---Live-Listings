@@ -28,7 +28,6 @@ const PrivateRoutes = () => {
   if (user_roles != null) {
     if (user_roles.includes('TestUser')) { 
       auth.approved = true; 
-      console.log('auth is true');
       // console.log('user_roles exists');
       // console.log(user_roles);
     }

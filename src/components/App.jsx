@@ -13,9 +13,8 @@ function App() {
       <Routes>
         <Route element={<PrivateRoutes />}>
           <Route path='/' element={<AppAGServerSide />} />  
-          <Route path='/loggedIn' element={<LoggedInNoUserRole />} />
         </Route>
-        
+        <Route path='/loggedIn' element={<LoggedInNoUserRole />} />
         <Route path='/login' element={<Login />} />
          
       </Routes>
