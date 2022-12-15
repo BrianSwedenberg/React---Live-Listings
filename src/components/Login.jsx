@@ -18,13 +18,18 @@ const Button = styled.button`
   padding: 15px 45px;
   border-radius: 5px;
   font-size: 24px;
+  margin-right: 5px;
+  margin-left: 5px;
 `
-const buttonPress = () => {
+const loginButtonPress = () => {
   // alert("button click");
   netlifyIdentity.open('login');
 }
 
-
+const signUpButtonPress = () => {
+  // alert("button click");
+  netlifyIdentity.open('signup');
+}
 
 const Login = () => {
   const navigate = useNavigate();
@@ -41,8 +46,11 @@ const Login = () => {
       <img src={logoType} class="logoType" />
       <hr class='horizontalLine' />
       <div className="ButtonContainer">
-        <Button onClick={buttonPress}>
+        <Button onClick={loginButtonPress}>
           Log In
+        </Button>
+        <Button onClick={signUpButtonPress}>
+          Sign Up
         </Button>
       </div>
     </div>
