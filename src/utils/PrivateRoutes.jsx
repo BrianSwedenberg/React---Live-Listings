@@ -37,8 +37,15 @@ const PrivateRoutes = () => {
 
   console.log('auth - ', auth);
   // console.log('user info - ', user);
-  return(
-    auth.approved ? <Outlet /> : <Navigate to='/login'/>
-  );
+  if ( auth.approved ) {
+    return(
+      auth.approved ? <Outlet /> : <Navigate to='/login'/>
+    );
+  }
+  else {
+    return(
+      auth.user ? <Outlet /> : <Navigate to='/loggedIn'/>
+    );
+  }
 }
 export default PrivateRoutes
