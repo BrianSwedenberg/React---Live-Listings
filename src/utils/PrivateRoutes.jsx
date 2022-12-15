@@ -20,19 +20,23 @@ const PrivateRoutes = () => {
     // console.log(typeof user_roles)
   }
   
-  let auth = false;
-  if (user_roles == null ) { console.log('undefined user roles') }
-  else if (user_roles.includes('TestUser')) { 
-    {auth=true}; 
-    console.log('auth is true');
-    // console.log('user_roles exists');
-    // console.log(user_roles);
+  let auth = { approved: false , user : false };
+  if (user_metadata == null ) { console.log('undefined user roles') }
+  else {
+    auth.user = true
+    if (user_roles.includes('TestUser')) { 
+      auth.approved = true; 
+      console.log('auth is true');
+      // console.log('user_roles exists');
+      // console.log(user_roles);
+    }
   }
+  
 
-  // console.log('auth - ', auth);
+  console.log('auth - ', auth);
   // console.log('user info - ', user);
   return(
-    auth ? <Outlet /> : <Navigate to='/login'/>
+    auth.approved ? <Outlet /> : <Navigate to='/login'/>
   );
 }
 export default PrivateRoutes

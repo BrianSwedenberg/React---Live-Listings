@@ -3,7 +3,8 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Login from './Login';
 import AppAGServerSide from './AppAGServerSide';
-import PrivateRoutes from '../utils/PrivateRoutes'
+import PrivateRoutes from '../utils/PrivateRoutes';
+import LoggedInNoUserRole from './LoggedInNoUserRole';
 
 
 function App() {
@@ -12,7 +13,9 @@ function App() {
       <Routes>
         <Route element={<PrivateRoutes />}>
           <Route path='/' element={<AppAGServerSide />} />  
+          <Route path='/loggedIn' element={<LoggedInNoUserRole />} />
         </Route>
+        
         <Route path='/login' element={<Login />} />
          
       </Routes>
