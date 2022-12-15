@@ -37,14 +37,14 @@ const PrivateRoutes = () => {
 
   console.log('auth - ', auth);
   // console.log('user info - ', user);
-  if ( auth.approved ) {
+  if ( auth.user ) {
     return(
-      auth.approved ? <Outlet /> : <Navigate to='/login'/>
+      auth.approved ? <Outlet /> : <Navigate to='/loggedIn'/>
     );
   }
   else {
     return(
-      auth.user ? <Outlet /> : <Navigate to='/loggedIn'/>
+      <Navigate to='/login'/>
     );
   }
 }
