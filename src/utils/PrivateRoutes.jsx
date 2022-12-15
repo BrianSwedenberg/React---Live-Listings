@@ -21,9 +21,11 @@ const PrivateRoutes = () => {
   }
   
   let auth = { approved: false , user : false };
-  if (user_metadata == null ) { console.log('undefined user roles') }
-  else {
-    auth.user = true
+  if (user_metadata != null ) { 
+    // console.log('undefined user roles')
+    auth.user = true;
+  }
+  if (user_roles != null) {
     if (user_roles.includes('TestUser')) { 
       auth.approved = true; 
       console.log('auth is true');
