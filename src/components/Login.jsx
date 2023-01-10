@@ -32,6 +32,11 @@ const signUpButtonPress = () => {
   netlifyIdentity.open('signup');
 }
 
+const logoutButtonPress = () => {
+  // alert("logout");
+  netlifyIdentity.logout();
+}
+
 const Login = () => {
   const navigate = useNavigate();
   
@@ -52,6 +57,9 @@ const Login = () => {
         </Button>
         <Button onClick={signUpButtonPress}>
           Sign Up
+        </Button>
+        <Button onClick={logoutButtonPress}>
+          Log Out
         </Button>
       </div>
     </div>
