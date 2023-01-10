@@ -1,6 +1,6 @@
 import React from 'react'
 // import ReactDOM from 'react-dom/client'
-import { redirect } from 'react-router-dom';
+// import { redirect } from 'react-router-dom';
 import { useNavigate } from "react-router";
 import netlifyIdentity from 'netlify-identity-widget'
 import styled from 'styled-components';
