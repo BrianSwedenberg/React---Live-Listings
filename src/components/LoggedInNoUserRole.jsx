@@ -9,8 +9,9 @@ import Header from './Header'
 
 window.netfliyIdentity = netlifyIdentity;
 netlifyIdentity.init();
-// const user = netlifyIdentity.currentUser();
+const user = netlifyIdentity.currentUser();
 
+/*
 const Button = styled.button`
   background-color: #00A9E8;
   color: white;
@@ -22,32 +23,22 @@ const Button = styled.button`
   margin-right: 5px;
   margin-left: 5px;
 `
+*/
 
 
 const LoggedInNoUserRole = () => {
-  const navigate = useNavigate();
-
-  const handleLogout = (params) => {
-    console.log('handle logout - ', params);
-    navigate("/", { replace: true });
-  }
+  // const navigate = useNavigate()
 
   netlifyIdentity.on('login', user => handleLogin(user))
-  netlifyIdentity.on('logout', user => handleLogout(user))
 
   return (
     <div>
-      <Header/>
+      <Header />
       <div className='LoginPanel'>
         <img src={logoType} class="logoType" />
         <hr class='horizontalLine' />
         <div className="TextContainer">
           You have successfully signed up! We will notify you by email once your account is approved for access.  If your account has been approved, please log out and log back in.
-        </div>
-        <div className="ButtonContainer">
-          <Button onClick={logoutButtonPress}>
-            Log Out
-          </Button>
         </div>
       </div>
     </div>

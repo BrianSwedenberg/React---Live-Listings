@@ -10,7 +10,7 @@ import Header from './Header';
 
 window.netfliyIdentity = netlifyIdentity;
 netlifyIdentity.init();
-// const user = netlifyIdentity.currentUser();
+const user = netlifyIdentity.currentUser();
 
 const Button = styled.button`
   background-color: #00A9E8;
