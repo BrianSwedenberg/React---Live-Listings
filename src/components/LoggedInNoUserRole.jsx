@@ -4,7 +4,8 @@ import { useNavigate } from "react-router";
 import netlifyIdentity from 'netlify-identity-widget'
 import styled from 'styled-components';
 import logoType from '../images/Logotype1.png';
-import './LoggedIn.css'
+import './LoggedIn.css';
+import Header from './Header'
 
 window.netfliyIdentity = netlifyIdentity;
 netlifyIdentity.init();
@@ -22,11 +23,6 @@ const Button = styled.button`
   margin-left: 5px;
 `
 
-const logoutButtonPress = () => {
-  // alert("button click");
-  netlifyIdentity.logout();
-}
-
 
 const LoggedInNoUserRole = () => {
   const navigate = useNavigate();
@@ -40,16 +36,19 @@ const LoggedInNoUserRole = () => {
   netlifyIdentity.on('logout', user => handleLogout(user))
 
   return (
-    <div className='LoginPanel'>
-      <img src={logoType} class="logoType" />
-      <hr class='horizontalLine' />
-      <div className="TextContainer">
-        You have successfully signed up! We will notify you by email once your account is approved for access.  If your account has been approved, please log out and log back in.
-      </div>
-      <div className="ButtonContainer">
-        <Button onClick={logoutButtonPress}>
-          Log Out
-        </Button>
+    <div>
+      <Header/>
+      <div className='LoginPanel'>
+        <img src={logoType} class="logoType" />
+        <hr class='horizontalLine' />
+        <div className="TextContainer">
+          You have successfully signed up! We will notify you by email once your account is approved for access.  If your account has been approved, please log out and log back in.
+        </div>
+        <div className="ButtonContainer">
+          <Button onClick={logoutButtonPress}>
+            Log Out
+          </Button>
+        </div>
       </div>
     </div>
   );

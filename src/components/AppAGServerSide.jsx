@@ -3,28 +3,14 @@ import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import 'ag-grid-enterprise'; // the AG Grid Enterprise Package
 import logoType from '../images/Logotype1.png';
-import styled from 'styled-components';
+
 import BrandList from "/src/Data/BrandList.json";
 import LinkCellRenderer from './linkCellRenderer.jsx'
+import Header from './Header'
 
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 
-const Button = styled.button`
-  background-color: #00A9E8;
-  color: white;
-  width: 100%;
-  padding: 15px 45px;
-  border-radius: 5px;
-  font-size: 20px;
-  font-weight: bold;
-  margin-right: 5px;
-  margin-left: 5px;
-`
-const logoutButtonPress = () => {
-  // alert("button click");
-  netlifyIdentity.logout();
-}
 
 const datasource = {
   rowCount: undefined,
@@ -157,12 +143,8 @@ const AppAGServerSide = () => {
 
   return (
     <div>
+      <Header/>
       <img src={logoType} />
-      <div className="ButtonContainer">
-        <Button onClick={logoutButtonPress}>
-          Log Out
-        </Button>
-      </div>
       <div style={style}>
 
         {/* On div wrapping Grid a) specify theme CSS Class Class and b) sets Grid size */}

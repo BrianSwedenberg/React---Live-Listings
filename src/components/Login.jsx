@@ -2,14 +2,15 @@ import React from 'react'
 // import ReactDOM from 'react-dom/client'
 // import { redirect } from 'react-router-dom';
 import { useNavigate } from "react-router";
-import netlifyIdentity from 'netlify-identity-widget'
+import netlifyIdentity from 'netlify-identity-widget';
 import styled from 'styled-components';
 import logoType from '../images/Logotype1.png';
-import './Login.css'
+import './Login.css';
+import Header from './Header';
 
 window.netfliyIdentity = netlifyIdentity;
 netlifyIdentity.init();
-const user = netlifyIdentity.currentUser();
+// const user = netlifyIdentity.currentUser();
 
 const Button = styled.button`
   background-color: #00A9E8;
@@ -32,11 +33,6 @@ const signUpButtonPress = () => {
   netlifyIdentity.open('signup');
 }
 
-const logoutButtonPress = () => {
-  // alert("logout");
-  netlifyIdentity.logout();
-}
-
 const Login = () => {
   const navigate = useNavigate();
   
@@ -48,21 +44,21 @@ const Login = () => {
   netlifyIdentity.on('login', user => handleLogin(user))
   
   return (
-    <div className='LoginPanel'>
-      <img src={logoType} class="logoType" />
-      <hr class='horizontalLine' />
-      <div className="ButtonContainer">
-        <Button onClick={loginButtonPress}>
-          Log In
-        </Button>
-        <Button onClick={signUpButtonPress}>
-          Sign Up
-        </Button>
-        <Button onClick={logoutButtonPress}>
-          Log Out
-        </Button>
+    <div>
+      {/*<Header/>*/}
+      <div className='LoginPanel'>
+        <img src={logoType} class="logoType" />
+        <hr class='horizontalLine' />
+        <div className="ButtonContainer">
+          <Button onClick={loginButtonPress}>
+            Log In
+          </Button>
+          <Button onClick={signUpButtonPress}>
+            Sign Up
+          </Button>
+        </div>
       </div>
-    </div>
+    </div>  
   );
 };
 
