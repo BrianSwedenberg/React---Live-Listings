@@ -144,7 +144,6 @@ const AppAGServerSide = () => {
   return (
     <div>
       <Header/>
-      <img src={logoType} />
       <div style={style}>
 
         {/* On div wrapping Grid a) specify theme CSS Class Class and b) sets Grid size */}

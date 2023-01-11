@@ -6,10 +6,10 @@ import './Header.css';
 const Button = styled.button`
   background-color: #00A9E8;
   color: white;
-  width: 12%;
+  width: 10%;
   padding: 8px 30px;
   border-radius: 5px;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
   margin-right: 0px;
   margin-top: 5px;
@@ -17,7 +17,7 @@ const Button = styled.button`
 `
 
 const logoutButtonPress = () => {
-  // alert("logout");
+  alert("logout");
   netlifyIdentity.logout();
 }
 
