@@ -23,7 +23,7 @@ const Button = styled.button`
 `
 
 const logoutButtonPress = () => {
-  alert("logout");
+  // alert("logout");
   netlifyIdentity.logout();
 }
 
