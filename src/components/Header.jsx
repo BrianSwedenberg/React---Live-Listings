@@ -30,23 +30,24 @@ const logoutButtonPress = () => {
 
 const Header = () => {
   const navigate = useNavigate();
-  
+
   const handleLogout = (params) => {
-    console.log('handle login - ', params);  
-    navigate("/", { replace : true});
+    console.log('handle logout - ', params);
+    navigate("/", { replace: true });
+    window.location.reload(true);
   }
 
   netlifyIdentity.on('logout', user => handleLogout(user))
-  
+
   return (
     <nav>
       <div className='div-header'>
-          <div className='div-logo'>
-            <img src={logoType} class="header-logo" />
-          </div>
-          <Button onClick={logoutButtonPress}>
-            Log Out
-          </Button>
+        <div className='div-logo'>
+          <img src={logoType} class="header-logo" />
+        </div>
+        <Button onClick={logoutButtonPress}>
+          Log Out
+        </Button>
       </div>
     </nav>
   )
