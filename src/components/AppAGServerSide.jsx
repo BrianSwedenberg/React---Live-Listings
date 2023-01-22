@@ -1,8 +1,9 @@
-import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
-// import { render } from 'react-dom';
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import 'ag-grid-enterprise'; // the AG Grid Enterprise Package
-import logoType from '../images/Logotype1.png';
+
+
+
 
 import BrandList from "/src/Data/BrandList.json";
 import LinkCellRenderer from './linkCellRenderer.jsx'
@@ -45,7 +46,7 @@ const datasource = {
 };
 
 
-
+const Tab = createBottomTabNavigator();
 
 const AppAGServerSide = () => {
 
