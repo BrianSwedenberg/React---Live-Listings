@@ -1,16 +1,16 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import 'ag-grid-enterprise'; // the AG Grid Enterprise Package
-
-
-
-
 import BrandList from "/src/Data/BrandList.json";
 import LinkCellRenderer from './linkCellRenderer.jsx'
 import Header from './Header'
 
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
+
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+
 
 
 const datasource = {
@@ -46,7 +46,6 @@ const datasource = {
 };
 
 
-const Tab = createBottomTabNavigator();
 
 const AppAGServerSide = () => {
 
@@ -145,6 +144,12 @@ const AppAGServerSide = () => {
   return (
     <div>
       <Header/>
+      <Tabs
+      defaultActiveKey="home"
+      id="uncontrolled-tab-example"
+      className="mb-3"
+      >
+      <Tab eventKey="home" title="Home">
       <div style={style}>
 
         {/* On div wrapping Grid a) specify theme CSS Class Class and b) sets Grid size */}
@@ -164,6 +169,11 @@ const AppAGServerSide = () => {
           />
         </div>
       </div>
+      </Tab>
+      <Tab eventKey='other' title='Other'>
+        Lorum Ipsum
+      </Tab>
+      </Tabs>
     </div>
   );
 };
