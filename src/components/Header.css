@@ -27,6 +27,8 @@ nav{
   padding: 10px;
 }
 
-.button-test{
+.input-box{
+  display: flex;
+  width: 80%;
   
 }

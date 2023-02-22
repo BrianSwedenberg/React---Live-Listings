@@ -4,6 +4,8 @@ import 'ag-grid-enterprise'; // the AG Grid Enterprise Package
 import BrandList from "/src/Data/BrandList.json";
 import LinkCellRenderer from './linkCellRenderer.jsx'
 import Header from './Header'
+import Dashboard from './Dashboard'
+import CumulDashboard from './CumulDashboard'
 
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
@@ -17,10 +19,10 @@ const datasource = {
   rowCount: undefined,
   getRows(params) {
     console.log('datasource get rows params - ', params)
-    console.log('params sort model - ', params.request.sortModel)
     const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/fetchLiveListingsGridDataRows-Request';
-    console.log('datasource - ', apiURL)
-    console.log(params.request)
+    // const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/fetchRefDetail-Request';
+    // console.log('datasource - ', apiURL)
+    // console.log(params.request)
     fetch(apiURL, {
       method: 'POST',
       // mode: 'cors',
@@ -149,7 +151,7 @@ const AppAGServerSide = () => {
       id="uncontrolled-tab-example"
       className="mb-3"
       >
-      <Tab eventKey="home" title="Home">
+      <Tab eventKey="home" title="Listings">
       <div style={style}>
 
         {/* On div wrapping Grid a) specify theme CSS Class Class and b) sets Grid size */}
@@ -170,8 +172,11 @@ const AppAGServerSide = () => {
         </div>
       </div>
       </Tab>
-      <Tab eventKey='other' title='Other'>
-        Lorum Ipsum
+      <Tab eventKey='Listing Detail' title='Listing Detail'>
+        <Dashboard />
+      </Tab>
+      <Tab eventKey='Cumul Dashboard' title='Cumul Dashboard'>
+        <CumulDashboard />
       </Tab>
       </Tabs>
     </div>

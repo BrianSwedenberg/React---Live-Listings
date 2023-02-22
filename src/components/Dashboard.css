@@ -1,0 +1,84 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #fafafa;
+  border: 1px solid #dfdfdf;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 1px;
+}
+
+.jumbotron {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+}
+
+.data-box {
+  display: flex;
+  flex-direction: row;
+  padding-top: 5px;
+  min-height: 100%;
+  width: 100%;
+  border: 1px solid;
+  
+}
+
+.metric-grid {
+  min-width: 65%;
+  max-width: 75%;
+  border: 1px solid;
+  font-size: 18px;
+}
+
+.ref-list{
+  display: flex;
+  flex-direction: column;
+  min-width: 30%;
+  border: 1px solid;
+  font-size: 18px;
+  justify-content: center;
+}
+
+.ref-list-title {
+  display: flex;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+/*   border-bottom: 1px solid; */
+}
+
+.refList {
+/*   width: 95%; */
+  height: 100%;
+  justify-content: center;
+/*   border: 2px solid; */
+}
+
+.InputForm {
+  display: flex;
+  flex-direction: column;
+/*   border: 2px solid; */
+  width: 100%;
+}
+
+.control-box {
+  display: flex;
+}
+
+.button-box {
+  width: 25%;
+}
+
+.ref-input {
+  width: 100%;
+}
+
+.marketplace-switch{
+  transform-origin: left;
+  transform: scale(1.25);
+  
+}
