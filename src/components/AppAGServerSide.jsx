@@ -176,7 +176,7 @@ const AppAGServerSide = () => {
         <Dashboard />
       </Tab>
       <Tab eventKey='Cumul Dashboard' title='Cumul Dashboard'>
-{/*         <CumulDashboard /> */}
+        <CumulDashboard />
       </Tab>
       </Tabs>
     </div>
