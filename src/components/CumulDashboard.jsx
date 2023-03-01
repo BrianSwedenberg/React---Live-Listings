@@ -1,8 +1,14 @@
 import { CumulioDashboardComponent } from '@cumul.io/react-cumulio-dashboard';
 import { useRef, useState, useEffect } from 'react';
+import netlifyIdentity from 'netlify-identity-widget';
 
 function CumulDashboard(props){
   const ref = useRef(null);
+
+  window.netfliyIdentity = netlifyIdentity;
+  netlifyIdentity.init();
+  const user = netlifyIdentity.currentUser();
+  console.log('dashboard user - ', user)
   // const [auth_details, set_auth_details] = useState();
   
   // const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/CumulioCredentials';
