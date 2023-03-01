@@ -9,7 +9,7 @@ function CumulDashboard(props){
   netlifyIdentity.init();
   const user = netlifyIdentity.currentUser();
   console.log('dashboard user - ', user)
-  console.log('dashboard user info - ', user.id, user.email, user.user_metadata)
+  console.log('dashboard user info - ', user.id, user.email, user.user_metadata.full_name)
   // const [auth_details, set_auth_details] = useState();
   
   // const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/CumulioCredentials';
