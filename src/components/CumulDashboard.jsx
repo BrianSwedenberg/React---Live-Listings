@@ -34,7 +34,7 @@ function CumulDashboard(props){
   }
 
   
-  console.log('cumul auth details - ', cumul_auth_detail)
+  // console.log('cumul auth details - ', cumul_auth_detail)
 
   // const auth_key = cumul_auth_detail['id']
   // const auth_token = cumul_auth_detail['token']
@@ -46,25 +46,28 @@ function CumulDashboard(props){
   // console.log(auth_details['id']);
   // console.log(auth_details['token']);
   // console.log('props details - ', props.cumul_auth_detail)
+  
   return (
     <div>
-      <CumulioDashboardComponent
-          ref={ref}
-          // authKey={cumul_auth_detail.id}
-          // authKey={props.auth_key}
-          // authKey={auth_key}
-          // authToken={cumul_auth_detail.token}
-          // authToken={props.auth_token}
-          // authToken={auth_token}
-          // dashboardId = 
-          dashboardSlug="livelistingtestdashboard"
-          ///dashboardId = "eb8a3bec-2d19-4229-b40a-2f31ad379780"
-          // switchScreenModeOnResize={false}
-          loaderSpinnerColor="rgb(0, 81, 126)"
-          loaderSpinnerBackground="rgb(236 248 255)"
-          itemsRendered={(e) => console.log('itemsRendered', e)}
-          appServer="https://app.us.cumul.io/"
-        ></CumulioDashboardComponent>
+      {cumul_auth_detail ? 
+        <CumulioDashboardComponent
+            ref={ref}
+            authKey={cumul_auth_detail.id}
+            // authKey={props.auth_key}
+            // authKey={auth_key}
+            authToken={cumul_auth_detail.token}
+            // authToken={props.auth_token}
+            // authToken={auth_token}
+            // dashboardId = 
+            dashboardSlug="livelistingtestdashboard"
+            ///dashboardId = "eb8a3bec-2d19-4229-b40a-2f31ad379780"
+            // switchScreenModeOnResize={false}
+            loaderSpinnerColor="rgb(0, 81, 126)"
+            loaderSpinnerBackground="rgb(236 248 255)"
+            itemsRendered={(e) => console.log('itemsRendered', e)}
+            appServer="https://app.us.cumul.io/"
+          ></CumulioDashboardComponent>
+      : null}
     </div>
   )
 }
