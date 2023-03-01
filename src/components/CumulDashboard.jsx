@@ -52,10 +52,10 @@ function CumulDashboard(props){
           ref={ref}
           // authKey={cumul_auth_detail.id}
           // authKey={props.auth_key}
-          authKey={auth_key}
+          // authKey={auth_key}
           // authToken={cumul_auth_detail.token}
           // authToken={props.auth_token}
-          authToken={auth_token}
+          // authToken={auth_token}
           // dashboardId = 
           dashboardSlug="livelistingtestdashboard"
           ///dashboardId = "eb8a3bec-2d19-4229-b40a-2f31ad379780"
