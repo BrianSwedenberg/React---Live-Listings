@@ -4,6 +4,7 @@ import netlifyIdentity from 'netlify-identity-widget';
 
 function CumulDashboard(props){
   const ref = useRef(null);
+  const [cumul_auth_detail, set_cumul_auth_detail] = useState();
 
   window.netfliyIdentity = netlifyIdentity;
   netlifyIdentity.init();
@@ -20,13 +21,13 @@ function CumulDashboard(props){
     const auth_response = await fetch(apiURL, { method: 'POST', body: JSON.stringify(user_info) },);
     let auth_credentials = await auth_response.json();
     console.log('get user data dashboard - ', auth_credentials)
-    set_auth_details(auth_credentials)
+    set_cumul_auth_detail(auth_credentials)
   }
 
   useEffect(() => {
     getUserData();
   }, []);
-  console.log(auth_details)
+  console.log(cumul_auth_detail)
 
   // const auth_key = props.auth_key
   // const auth_token = props.auth_token
