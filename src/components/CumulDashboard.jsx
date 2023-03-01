@@ -34,7 +34,7 @@ function CumulDashboard(props){
   }
 
   
-  // console.log('cumul auth details - ', cumul_auth_detail)
+  console.log('cumul auth details - ', cumul_auth_detail)
 
   // const auth_key = cumul_auth_detail.id
   // const auth_token = cumul_auth_detail.token
