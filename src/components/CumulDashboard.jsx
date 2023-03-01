@@ -43,9 +43,11 @@ function CumulDashboard(props){
     <div>
       <CumulioDashboardComponent
           ref={ref}
-          authKey={props.auth_key}
+          authKey={cumul_auth_detail.id}
+          // authKey={props.auth_key}
           // authKey={auth_var.key}
-          authToken={props.auth_token}
+          authToken={cumul_auth_detail.token}
+          // authToken={props.auth_token}
           //authToken={auth_var.token}
           // dashboardId = 
           dashboardSlug="livelistingtestdashboard"
