@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import 'ag-grid-enterprise'; // the AG Grid Enterprise Package
+import netlifyIdentity from 'netlify-identity-widget';
 import BrandList from "/src/Data/BrandList.json";
 import LinkCellRenderer from './linkCellRenderer.jsx'
 import Header from './Header'
@@ -49,7 +50,7 @@ const datasource = {
 
 
 
-const AppAGServerSide = () => {
+const AppAGServerSide = (props) => {
 
   const gridRef = useRef(); // Optional - for accessing Grid's API
   const [rowData, setRowData] = useState(); // Set rowData to Array of Objects, one Object per Row
@@ -138,8 +139,9 @@ const AppAGServerSide = () => {
 
 
 
-
-
+  // console.log('auth detail from app serverside', props.cumul_auth_detail)
+  const cumul_auth_detail = props.cumul_auth_detail
+  console.log('auth detail from app serverside 2 -', cumul_auth_detail)
 
 
 
@@ -176,6 +178,7 @@ const AppAGServerSide = () => {
         <Dashboard />
       </Tab>
       <Tab eventKey='Cumul Dashboard' title='Cumul Dashboard'>
+{/*         <CumulDashboard auth_token={cumul_auth_detail.token} auth_key={cumul_auth_detail.id}/> */}
         <CumulDashboard />
       </Tab>
       </Tabs>

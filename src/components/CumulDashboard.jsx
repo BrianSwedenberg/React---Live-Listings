@@ -1,26 +1,47 @@
 import { CumulioDashboardComponent } from '@cumul.io/react-cumulio-dashboard';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
-
-
-function CumulDashboard(){
+function CumulDashboard(props){
   const ref = useRef(null);
-  var client = {  
-    api_key: 'a7e3c1d9-11f0-4ee4-aa42-30c75d8ef4db',
-    api_token: 'qfhl8vII8ZS8Vo8pyVFbh3tRfDTXkh3YW3eIzd0CXtzKj9RIvQKhofQc2qwiZwtOogPnm8lK5SL5wA4Jz0GbY2fObbh5oXrpZgCdlEamxdeiHekTIRodbPiXzOsEiLbWCjZyvWw3XmkvkHKBtXElhE',
-    host: 'https://api.us.cumul.io'
-  };
-  console.log(client['api_key']);
-  console.log(client['api_token']);
+  // const [auth_details, set_auth_details] = useState();
+  
+  // const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/CumulioCredentials';
+  // let user_info = {"username" : "brian_test", "name" : "brian swedenberg", "email" : "test@test.com", "suborg" : "test org"}
+
+  // const getUserData = async () => {
+  //   const auth_response = await fetch(apiURL, { method: 'POST', body: JSON.stringify(user_info) },);
+  //   let auth_credentials = await auth_response.json();
+  //   console.log('get user data - ', auth_credentials)
+  //   set_auth_details(auth_credentials)
+  // }
+
+  // useEffect(() => {
+  //   getUserData();
+  // }, []);
+  // console.log(auth_details)
+
+  // const auth_key = props.auth_key
+  // const auth_token = props.auth_token
+  // var auth_var = {  
+  //   key: '0314b491-9298-48da-9029-57e2e2b9bac4',
+  //   token: 'hW1gkbkFXZvtafwQ0H0u7vE0gHzXGWsnlgZUVkwtP5s4an0MM5AZedF998f8FxGhZwE4Vyhmc8NtdWcGmjJJn2BGnZQteHtmFXWftINc1La9fOzVZV5Qgix6Ck5BytYGxPk51ZCF5tXnVYDXMc0nCG',
+  //   host: 'https://api.us.cumul.io'
+  // };
+  // console.log(auth_details['id']);
+  // console.log(auth_details['token']);
+  console.log(props.cumul_auth_detail)
   return (
     <div>
       <CumulioDashboardComponent
           ref={ref}
-          authKey={client['api_key']}
-          authToken={client['api_token']}
+          authKey={props.auth_key}
+          // authKey={auth_var.key}
+          authToken={props.auth_token}
+          //authToken={auth_var.token}
+          // dashboardId = 
           dashboardSlug="livelistingtestdashboard"
-          // dashboardId = "eb8a3bec-2d19-4229-b40a-2f31ad379780"
-          switchScreenModeOnResize={false}
+          ///dashboardId = "eb8a3bec-2d19-4229-b40a-2f31ad379780"
+          // switchScreenModeOnResize={false}
           loaderSpinnerColor="rgb(0, 81, 126)"
           loaderSpinnerBackground="rgb(236 248 255)"
           itemsRendered={(e) => console.log('itemsRendered', e)}
