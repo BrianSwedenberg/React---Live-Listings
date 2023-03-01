@@ -12,20 +12,21 @@ function CumulDashboard(props){
   console.log('dashboard user info - ', user.id, user.email, user.user_metadata.full_name)
   // const [auth_details, set_auth_details] = useState();
   
-  // const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/CumulioCredentials';
-  // let user_info = {"username" : "brian_test", "name" : "brian swedenberg", "email" : "test@test.com", "suborg" : "test org"}
+  const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/CumulioCredentials';
+  let user_info = {"username" : user.id, "name" : user.user_metadata.full_name, "email" : user.email, "suborg" : "test org"}
+  console.log('user info dashboard - ', user_info)
 
-  // const getUserData = async () => {
-  //   const auth_response = await fetch(apiURL, { method: 'POST', body: JSON.stringify(user_info) },);
-  //   let auth_credentials = await auth_response.json();
-  //   console.log('get user data - ', auth_credentials)
-  //   set_auth_details(auth_credentials)
-  // }
+  const getUserData = async () => {
+    const auth_response = await fetch(apiURL, { method: 'POST', body: JSON.stringify(user_info) },);
+    let auth_credentials = await auth_response.json();
+    console.log('get user data dashboard - ', auth_credentials)
+    set_auth_details(auth_credentials)
+  }
 
-  // useEffect(() => {
-  //   getUserData();
-  // }, []);
-  // console.log(auth_details)
+  useEffect(() => {
+    getUserData();
+  }, []);
+  console.log(auth_details)
 
   // const auth_key = props.auth_key
   // const auth_token = props.auth_token
