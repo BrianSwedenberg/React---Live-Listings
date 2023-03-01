@@ -15,26 +15,26 @@ import CumulDashboard from './CumulDashboard';
 
 
 function App() {  
-  const [cumul_auth_detail, set_cumul_auth_detail] = useState();
+  // const [cumul_auth_detail, set_cumul_auth_detail] = useState();
 
-  window.netfliyIdentity = netlifyIdentity;
-  netlifyIdentity.init();
-  const user = netlifyIdentity.currentUser();
-  console.log('app user - ', user)
+  // window.netfliyIdentity = netlifyIdentity;
+  // netlifyIdentity.init();
+  // const user = netlifyIdentity.currentUser();
+  // console.log('app user - ', user)
 
-  const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/CumulioCredentials';
-  let user_info = {"username" : "brian_test", "name" : "brian swedenberg", "email" : "test@test.com", "suborg" : "test org"}
+  // const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/CumulioCredentials';
+  // let user_info = {"username" : "brian_test", "name" : "brian swedenberg", "email" : "test@test.com", "suborg" : "test org"}
 
-  const getUserData_cumul = async () => {
-    const auth_response = await fetch(apiURL, { method: 'POST', body: JSON.stringify(user_info) },);
-    let auth_credentials = await auth_response.json();
-    console.log('get user data app - ', auth_credentials)
-    set_cumul_auth_detail(auth_credentials)
-  }
+  // const getUserData_cumul = async () => {
+  //   const auth_response = await fetch(apiURL, { method: 'POST', body: JSON.stringify(user_info) },);
+  //   let auth_credentials = await auth_response.json();
+  //   console.log('get user data app - ', auth_credentials)
+  //   set_cumul_auth_detail(auth_credentials)
+  // }
 
-  useEffect(() => {
-    getUserData_cumul();
-  }, []);
+  // useEffect(() => {
+  //   getUserData_cumul();
+  // }, []);
   
   return(
     <Router>

@@ -13,6 +13,9 @@ function CumulDashboard(props){
   // console.log('dashboard user info - ', user.id, user.email, user.user_metadata.full_name)
   // const [auth_details, set_auth_details] = useState();
   
+  useEffect(() => {
+    getUserData();
+  }, []);
   
   // console.log('user info dashboard - ', user_info)
 
@@ -30,9 +33,7 @@ function CumulDashboard(props){
     set_cumul_auth_detail(auth_credentials);
   }
 
-  useEffect(() => {
-    getUserData();
-  }, []);
+  
   // console.log('cumul auth details - ', cumul_auth_detail)
 
   // const auth_key = cumul_auth_detail.id
