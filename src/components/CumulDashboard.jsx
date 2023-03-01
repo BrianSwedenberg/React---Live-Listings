@@ -9,13 +9,13 @@ function CumulDashboard(props){
   window.netfliyIdentity = netlifyIdentity;
   netlifyIdentity.init();
   const user = netlifyIdentity.currentUser();
-  console.log('dashboard user - ', user)
-  console.log('dashboard user info - ', user.id, user.email, user.user_metadata.full_name)
+  // console.log('dashboard user - ', user)
+  // console.log('dashboard user info - ', user.id, user.email, user.user_metadata.full_name)
   // const [auth_details, set_auth_details] = useState();
   
   const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/CumulioCredentials';
   let user_info = {"username" : user.id, "name" : user.user_metadata.full_name, "email" : user.email, "suborg" : "test org"}
-  console.log('user info dashboard - ', user_info)
+  // console.log('user info dashboard - ', user_info)
 
   const getUserData = async () => {
     const auth_response = await fetch(apiURL, { method: 'POST', body: JSON.stringify(user_info) },);
@@ -27,10 +27,10 @@ function CumulDashboard(props){
   useEffect(() => {
     getUserData();
   }, []);
-  console.log(cumul_auth_detail)
+  console.log('cumul auth details - ', cumul_auth_detail)
 
-  // const auth_key = props.auth_key
-  // const auth_token = props.auth_token
+  const auth_key = cumul_auth_detail.id
+  const auth_token = cumul_auth_detail.token
   // var auth_var = {  
   //   key: '0314b491-9298-48da-9029-57e2e2b9bac4',
   //   token: 'hW1gkbkFXZvtafwQ0H0u7vE0gHzXGWsnlgZUVkwtP5s4an0MM5AZedF998f8FxGhZwE4Vyhmc8NtdWcGmjJJn2BGnZQteHtmFXWftINc1La9fOzVZV5Qgix6Ck5BytYGxPk51ZCF5tXnVYDXMc0nCG',
@@ -38,17 +38,17 @@ function CumulDashboard(props){
   // };
   // console.log(auth_details['id']);
   // console.log(auth_details['token']);
-  console.log(props.cumul_auth_detail)
+  // console.log('props details - ', props.cumul_auth_detail)
   return (
     <div>
       <CumulioDashboardComponent
           ref={ref}
-          authKey={cumul_auth_detail.id}
+          // authKey={cumul_auth_detail.id}
           // authKey={props.auth_key}
-          // authKey={auth_var.key}
-          authToken={cumul_auth_detail.token}
+          authKey={auth_key}
+          // authToken={cumul_auth_detail.token}
           // authToken={props.auth_token}
-          //authToken={auth_var.token}
+          authToken={auth_token}
           // dashboardId = 
           dashboardSlug="livelistingtestdashboard"
           ///dashboardId = "eb8a3bec-2d19-4229-b40a-2f31ad379780"
