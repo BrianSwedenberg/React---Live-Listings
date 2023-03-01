@@ -36,8 +36,8 @@ function CumulDashboard(props){
   
   console.log('cumul auth details - ', cumul_auth_detail)
 
-  const auth_key = cumul_auth_detail['id']
-  const auth_token = cumul_auth_detail['token']
+  // const auth_key = cumul_auth_detail['id']
+  // const auth_token = cumul_auth_detail['token']
   // var auth_var = {  
   //   key: '0314b491-9298-48da-9029-57e2e2b9bac4',
   //   token: 'hW1gkbkFXZvtafwQ0H0u7vE0gHzXGWsnlgZUVkwtP5s4an0MM5AZedF998f8FxGhZwE4Vyhmc8NtdWcGmjJJn2BGnZQteHtmFXWftINc1La9fOzVZV5Qgix6Ck5BytYGxPk51ZCF5tXnVYDXMc0nCG',
