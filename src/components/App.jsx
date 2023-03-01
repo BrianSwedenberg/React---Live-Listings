@@ -47,7 +47,8 @@ function App() {
         <Route path='/' element={<AppAGServerSide cumul_auth_detail={cumul_auth_detail}/>} /> 
         <Route path='/loggedIn' element={<LoggedInNoUserRole />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/dashboard' element={<CumulDashboard cumul_auth_detail={cumul_auth_detail} />} />
+{/*         <Route path='/dashboard' element={<CumulDashboard cumul_auth_detail={cumul_auth_detail} />} /> */}
+        <Route path='/dashboard' element={<CumulDashboard />} />
          
       </Routes>
     </Router>
