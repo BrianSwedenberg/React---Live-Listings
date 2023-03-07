@@ -151,7 +151,9 @@ const AppAGServerSide = (props) => {
       <Tabs
       defaultActiveKey="home"
       id="uncontrolled-tab-example"
-      className="mb-3"
+      variant="pills"
+      // className="mb-3"
+      className="flex-column"
       >
       <Tab eventKey="home" title="Listings">
       <div style={style}>
@@ -162,7 +164,6 @@ const AppAGServerSide = (props) => {
 
           <AgGridReact
             gridOptions={gridOptionsLevel1}
-
             ref={gridRef} // Ref for accessing Grid's API
             defaultColDef={defaultColDef} // Default Column Properties
             rowModelType={'serverSide'}

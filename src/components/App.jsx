@@ -11,6 +11,9 @@ import PrivateRoutes from '../utils/PrivateRoutes';
 import LoggedInNoUserRole from './LoggedInNoUserRole';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CumulDashboard from './CumulDashboard';
+import SidebarCDB from './Sidebar';
+import SidebarPro from './Sidebar-copy';
+
 // import listingData from '../Data/SampleListingData.json';
 
 
@@ -49,6 +52,7 @@ function App() {
         <Route path='/login' element={<Login />} />
 {/*         <Route path='/dashboard' element={<CumulDashboard cumul_auth_detail={cumul_auth_detail} />} /> */}
         <Route path='/dashboard' element={<CumulDashboard />} />
+        <Route path='/sidebar' element={<SidebarCDB />} />
          
       </Routes>
     </Router>

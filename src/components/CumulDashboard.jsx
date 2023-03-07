@@ -1,6 +1,15 @@
 import { CumulioDashboardComponent } from '@cumul.io/react-cumulio-dashboard';
 import { useRef, useState, useEffect } from 'react';
 import netlifyIdentity from 'netlify-identity-widget';
+import Nav from 'react-bootstrap/Nav';
+import {
+  CDBSidebar,
+  CDBSidebarContent,
+  CDBSidebarFooter,
+  CDBSidebarHeader,
+  CDBSidebarMenu,
+  CDBSidebarMenuItem,
+} from 'cdbreact';
 
 function CumulDashboard(props){
   const ref = useRef(null);
@@ -25,7 +34,8 @@ function CumulDashboard(props){
     const user = netlifyIdentity.currentUser();
     
     const apiURL = 'https://us-east4-centered-arbor-354419.cloudfunctions.net/CumulioCredentials';
-    let user_info = {"username" : user.id, "name" : user.user_metadata.full_name, "email" : user.email, "suborg" : "test org"};
+    // let user_info = {"username" : user.id, "name" : user.user_metadata.full_name, "email" : user.email, "suborg" : "test org"};  // use this for live stuff
+    let user_info = {"username" : 'brian_test', "name" : 'brian swedenberg', "email" : 'test@test.com', "suborg" : "test org"};  // this is just hard coded info for testing
     
     const auth_response = await fetch(apiURL, { method: 'POST', body: JSON.stringify(user_info) },);
     let auth_credentials = await auth_response.json();
@@ -49,25 +59,31 @@ function CumulDashboard(props){
   
   return (
     <div>
-      {cumul_auth_detail ? 
-        <CumulioDashboardComponent
-            ref={ref}
-            authKey={cumul_auth_detail.id}
-            // authKey={props.auth_key}
-            // authKey={auth_key}
-            authToken={cumul_auth_detail.token}
-            // authToken={props.auth_token}
-            // authToken={auth_token}
-            // dashboardId = 
-            dashboardSlug="livelistingtestdashboard"
-            ///dashboardId = "eb8a3bec-2d19-4229-b40a-2f31ad379780"
-            // switchScreenModeOnResize={false}
-            loaderSpinnerColor="rgb(0, 81, 126)"
-            loaderSpinnerBackground="rgb(236 248 255)"
-            itemsRendered={(e) => console.log('itemsRendered', e)}
-            appServer="https://app.us.cumul.io/"
-          ></CumulioDashboardComponent>
-      : null}
+      <body>
+        <Nav variant="pills" className="flex-column">
+          <Nav.Item>
+          {cumul_auth_detail ? 
+            <CumulioDashboardComponent
+                ref={ref}
+                authKey={cumul_auth_detail.id}
+                // authKey={props.auth_key}
+                // authKey={auth_key}
+                authToken={cumul_auth_detail.token}
+                // authToken={props.auth_token}
+                // authToken={auth_token}
+                // dashboardId = 
+                dashboardSlug="livelistingtestdashboard"
+                ///dashboardId = "eb8a3bec-2d19-4229-b40a-2f31ad379780"
+                // switchScreenModeOnResize={false}
+                loaderSpinnerColor="rgb(0, 81, 126)"
+                loaderSpinnerBackground="rgb(236 248 255)"
+                itemsRendered={(e) => console.log('itemsRendered', e)}
+                appServer="https://app.us.cumul.io/"
+              ></CumulioDashboardComponent>
+          : null}
+          </Nav.Item>
+        </Nav>
+      </body>
     </div>
   )
 }
